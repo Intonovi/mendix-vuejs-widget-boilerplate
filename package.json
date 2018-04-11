@@ -1,0 +1,36 @@
+{
+  "name": "HelloWorld",
+  "version": "1.0.0",
+  "description": "",
+  "main": "",
+  "dependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-env": "^1.6.0",
+    "eslint": "^4.6.1",
+    "eslint-loader": "^1.9.0",
+    "prop-types": "^15.5.10",
+    "vue": "^2.5.16",
+    "webpack": "^3.5.5"
+  },
+  "devDependencies": {
+    "copy-webpack-plugin": "^4.5.1",
+    "css-loader": "^0.28.11",
+    "eslint-config-standard": "^10.2.1",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-node": "^5.1.1",
+    "eslint-plugin-promise": "^3.5.0",
+    "eslint-plugin-standard": "^3.0.1",
+    "html-loader": "^0.5.5",
+    "vue-loader": "^14.2.2",
+    "vue-template-compiler": "^2.5.16"
+  },
+  "scripts": {
+    "clean": "rm -rf build/* && rm -f widget.mpk",
+    "prebuild": "npm run clean",
+    "build": "webpack && node package.xml.js && cd build && zip -r widget.mpk *",
+    "postbuild": "cp build/widget.mpk mendix/widgets/"
+  },
+  "author": "Petar Vukmanovic | petar.vukmanovic@intonovi.com",
+  "license": "Apache-2.0"
+}
