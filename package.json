@@ -28,7 +28,7 @@
   "scripts": {
     "clean": "rm -rf build/* && rm -f widget.mpk",
     "prebuild": "npm run clean",
-    "build": "webpack && node package.xml.js && cd build && zip -r widget.mpk *",
+    "build": "webpack -p && node package.xml.js && cd build && zip -r widget.mpk *",
     "postbuild": "cp build/widget.mpk mendix/widgets/"
   },
   "author": "Petar Vukmanovic | petar.vukmanovic@intonovi.com",
