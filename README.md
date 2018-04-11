@@ -30,13 +30,17 @@ Here I am copying “zip.exe” and “bzip2.dll” to <Program folder>\Git\usr\
 
 # How to use
 
-After you're done with requirements (bash terminal, node/NPM installed), you can open up the bash terminal in the root folder of the boilerplate. Run the following command:
+After you're done with requirements (bash terminal, node/NPM installed), you can open up the bash terminal and follow these steps to get up and running.
+
+First of all, let's get the widget downloaded (using `git clone` command). Open up the Git Bash terminal and run these commands:
 
 ```
+git clone https://github.com/Intonovi/mendix-vuejs-widget-boilerplate.git MxVueWidget
+cd MxVueWidget
 npm install
 ```
 
-This will install all the dependencies that we'll need for compiling our Mendix widget. This step can take up a few minutes, as it's going to to online and download a bunch of NPM libraries.
+This will download the project and install all the dependencies that we'll need for compiling our Mendix widget. This step can take up a few minutes, as it's going to to online and download a bunch of NPM libraries as well.
 
 Next thing to do is compile the widget:
 
@@ -47,10 +51,12 @@ npm run build
 After that's done you should now have, in your build folder, widget.mpk file. You can rename this to whatever you feel like naming it, but recommended way is to rename it to HelloWorld.mpk, or whatever the name you'll assign to your widget.
 
 # Tests
-You have a full-fledged Mendix app that comes with the boilerplate inside the "./mendix" folder. Run the app (convert in place, of course) and you're going to have a very, very basic test environment for your widget. Run locally and see your new widget in action!
+You have a Mendix app that comes with the boilerplate inside the "./mendix" folder. Run the app (doubleclick the MPR file, convert in place, of course) and you're going to have a very, very basic test environment for your widget. Run locally and see your new widget in action!
 
-# Original:
-I wish to thank the @Finaps for amazing React boilerplate, which we've used as a "starting point" for the VueJS widget boilerplate. Should you want to go with the React, please check this boilerplate out:
+#### NOTE: Every time you run `npm run build` to build your widget, you need to re-run/refresh the Mendix so that you reflect the changes in code. Webpack will copy the widget to the "./mendix" folder, so you just have to click that button.
+
+# Credits:
+I wish to thank the @Finaps for amazing React boilerplate, which we've used as a "starting point" for the VueJS widget boilerplate. Should you want to go with the React as your frontend framework of choice for your widget, please check this boilerplate out:
 
 https://github.com/Finaps/boilerplate-mendix-react-widget
 
