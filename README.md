@@ -53,7 +53,7 @@ After that's done you should now have, in your build folder, widget.mpk file. Yo
 # Tests
 You have a Mendix app that comes with the boilerplate inside the "./mendix" folder. Run the app (doubleclick the MPR file, convert in place, of course) and you're going to have a very, very basic test environment for your widget. Run locally and see your new widget in action!
 
-#### NOTE: Every time you run `npm run build` to build your widget, you need to re-run/refresh the Mendix so that you reflect the changes in code. Webpack will copy the widget to the "./mendix" folder, so you just have to click that button.
+#### NOTE: Every time you run `npm run build` to build your widget, you need to re-run/refresh your App in Mendix Modeler so that you reflect the changes in code. Webpack will copy the widget to the "./mendix" folder, so you just have to click that button.
 
 # Credits:
 I wish to thank the @Finaps for amazing React boilerplate, which we've used as a "starting point" for the VueJS widget boilerplate. Should you want to go with the React as your frontend framework of choice for your widget, please check this boilerplate out:
