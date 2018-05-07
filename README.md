@@ -50,10 +50,40 @@ npm run build
 
 After that's done you should now have, in your build folder, widget.mpk file. You can rename this to whatever you feel like naming it, but recommended way is to rename it to HelloWorld.mpk, or whatever the name you'll assign to your widget.
 
+# Utalize File Watcher
+
+If you're constantly working on your widget, you'd probably want to avoid jumping back and forth between your terminal and code editor and re-running the same command over and over again. Utalize the Webpack Watcher to ease your widget development workflow!
+
+```
+npm run watch
+```
+
+What this will do is keep the terminal process running, and monitor for changes in your project. Every time you modify your files ( **and save them** ), watcher will run the scripts and copy your latest changes to the test Mendix instance. The only thing you need to do is again run the Mendix app, so your Mendix app can also be aware of the changes as well. Neat!
+
+# Make your widget production ready
+
+Two things you'd need to do here, before your widget is fully ready for the outside world. First, dig into the `webpack.config.js` file and find this line of code:
+
+```
+'process.env':
+    NODE_ENV: '"development"' // change to "production" when publishing your Mendix widget
+}
+```
+
+Change from `"development"` to `"production"`. This is going to tell VueJS to switch to production mode, which will render your [VueJS Developer Tools](https://github.com/vuejs/vue-devtools) hidden. Basically, VueJS will not be detected by your browser. You can find more information [here](https://vuejs.org/v2/guide/deployment.html).
+
+After you make that change on the `webpack.config.js` file, run the following command:
+
+```
+npm run production
+```
+
+This will finally minimize your code and you'll be good to go!
+
 # Tests
 You have a Mendix app that comes with the boilerplate inside the "./mendix" folder. Run the app (doubleclick the MPR file, convert in place, of course) and you're going to have a very, very basic test environment for your widget. Run locally and see your new widget in action!
 
-#### NOTE: Every time you run `npm run build` to build your widget, you need to re-run/refresh your App in Mendix Modeler so that you reflect the changes in code. Webpack will copy the widget to the "./mendix" folder, so you just have to click that button.
+#### NOTE: Every time you run `npm run build` to build your widget, you need to re-run/refresh your App in Mendix Modeler so that you reflect the changes in code. Webpack will copy the widget to the "./mendix" folder, so you just have to click that button. If you are using `npm run watch` command, still the same rule applies - reload the Mendix app to see the changes.
 
 # Credits:
 I wish to thank the @Finaps for amazing React boilerplate, which we've used as a "starting point" for the VueJS widget boilerplate. Should you want to go with the React as your frontend framework of choice for your widget, please check this boilerplate out:

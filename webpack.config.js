@@ -8,6 +8,8 @@ var webpack   = require('webpack'),
     buildPath = 'build/'+widget+'/widget',
     buildFile = widget+'.js';
 
+const WebpackShellPlugin = require('webpack-shell-plugin');
+
 var CopyWebpackPlugin = require('copy-webpack-plugin')
 
 var config = {
@@ -61,13 +63,18 @@ var config = {
         // Change the plugin do "production" before you go live! Don't forget!
         new webpack.DefinePlugin({
           'process.env': {
-            NODE_ENV: '"development"'
+            NODE_ENV: '"development"' // change to "production" when publishing your Mendix widget
           }
         }),
         new CopyWebpackPlugin([{
             from: './src/widget/template/*.html',
             to: 'template/' + widget + '.html'
-        }])
+        }]),
+
+        new WebpackShellPlugin({
+            onBuildStart: ['npm run clean'],
+            onBuildExit: ['node package.xml.js && cd build && zip -r widget.mpk * && cp widget.mpk ./../mendix/widgets/ && echo Widget copied to /mendix/widgets. Re-run your Mendix project to see changes.']
+        })
       ]
 };
 

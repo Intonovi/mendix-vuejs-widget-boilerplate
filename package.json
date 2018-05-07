@@ -23,13 +23,14 @@
     "eslint-plugin-standard": "^3.0.1",
     "html-loader": "^0.5.5",
     "vue-loader": "^14.2.2",
-    "vue-template-compiler": "^2.5.16"
+    "vue-template-compiler": "^2.5.16",
+    "webpack-shell-plugin": "^0.5.0"
   },
   "scripts": {
     "clean": "rm -rf build/* && rm -f widget.mpk",
-    "prebuild": "npm run clean",
-    "build": "webpack -p && node package.xml.js && cd build && zip -r widget.mpk *",
-    "postbuild": "cp build/widget.mpk mendix/widgets/"
+    "build": "webpack",
+    "production": "webpack -p",
+    "watch": "webpack --watch"
   },
   "author": "Petar Vukmanovic | petar.vukmanovic@intonovi.com",
   "license": "Apache-2.0"
