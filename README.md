@@ -70,6 +70,12 @@ Two things you'd need to do here, before your widget is fully ready for the outs
 }
 ```
 
+**ALSO, DON'T FORGET TO CHANGE THE MODE TO PRODUCTION AS WELL**
+
+```
+mode: "development", // Change the mode do "production" before you go live! Don't forget!
+```
+
 Change from `"development"` to `"production"`. This is going to tell VueJS to switch to production mode, which will render your [VueJS Developer Tools](https://github.com/vuejs/vue-devtools) hidden. Basically, VueJS will not be detected by your browser. You can find more information [here](https://vuejs.org/v2/guide/deployment.html).
 
 After you make that change on the `webpack.config.js` file, run the following command:
