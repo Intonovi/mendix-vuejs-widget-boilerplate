@@ -9,7 +9,7 @@ var webpack   = require('webpack'),
     buildFile = widget+'.js',
     VueLoaderPlugin = require('vue-loader/lib/plugin');
 
-const WebpackShellPlugin = require('webpack-shell-plugin');
+const WebpackShellPlugin = require('webpack-shell-plugin-next');
 
 var CopyWebpackPlugin = require('copy-webpack-plugin')
 
@@ -43,7 +43,15 @@ var config = {
                     attrs: [':data-src']
                   }
                 }
-              }
+              },
+              {
+                test: /\.s[a|c]ss$/,
+                use: [
+                    "style-loader", // creates style nodes from JS strings
+                    "css-loader", // translates CSS into CommonJS
+                    "sass-loader" // compiles Sass to CSS, using Node Sass by default
+                ]
+            }
         ]
     },
     externals: {
@@ -56,7 +64,7 @@ var config = {
             'vue$': 'vue/dist/vue.esm.js'
         }
     },
-    mode: "development",
+    mode: "development", // Change the mode do "production" before you go live! Don't forget!
     plugins: [
         // Change the plugin do "production" before you go live! Don't forget!
         new webpack.DefinePlugin({
@@ -70,8 +78,16 @@ var config = {
         }]),
 
         new WebpackShellPlugin({
-            onBuildStart: ['npm run clean'],
-            onBuildExit: ['node package.xml.js && cd build && zip -r widget.mpk * && cp widget.mpk ./../mendix/widgets/ && echo Widget copied to /mendix/widgets. Re-run your Mendix project to see changes.']
+            onBuildStart: {
+                scripts: ['npm run clean'],
+                blocking: true,
+                parallel: false
+            },
+            onBuildExit: {
+                scripts: ['node package.xml.js && cd build && zip -r widget.mpk * && cp widget.mpk ./../mendix/widgets/ && echo Widget copied to /mendix/widgets. Re-run your Mendix project to see changes.'],
+                blocking: true,
+                parallel: false
+            }
         }),
         new VueLoaderPlugin(),
       ]
